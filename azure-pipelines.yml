@@ -1,0 +1,22 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSource: 'spec'
+    versionSpec: '12.x'
+- script: 'npm install'
+  displayName: "Instala dependencias"
+
+- script: "npm run cy:run-junit"
+  displayName: "Executa testes"
+
+- task: PublishTestResults@2
+  displayName: "Gera Relatórios"
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/*.xml'
