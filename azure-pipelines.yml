@@ -18,6 +18,7 @@ steps:
 
   - task: PublishTestResults@2
     displayName: "Gera Relatórios"
+    
     inputs:
       testResultsFormat: 'JUnit'
       testResultsFiles: '**/*.xml'
